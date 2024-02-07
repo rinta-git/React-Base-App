@@ -5,6 +5,6 @@
 - [x] Logo and social media section
 
 #### _Take aways_
-*Learnt flexbox
-*Learnt position property
-*Learnt clip path
+* Learnt flexbox
+* Learnt position property
+* Learnt clip path
