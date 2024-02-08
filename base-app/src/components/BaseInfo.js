@@ -8,22 +8,22 @@ import discord from "../assets/discord.png";
 
 function BaseInfo() {
   return (
-    <div className="w-[50%] bg-[#605BFF] base-info-container">
-      <div className="flex flex-col h-full">
-        <div className="w-full h-[33.33%] pt-7 pl-7 ">
+    <div className="md:w-[50%] w-full bg-[#605BFF] base-info-container">
+      <div className="flex md:flex-col flex-row h-full md:w-full w-[328px] pl-[22px]">
+        <div className="md:w-full w-[21%] h-[33.33%] pt-7 md:pb-0 pb-7">
           <div className="relative">
             <div>
-              <img src={logo} alt="logo" />
+              <img src={logo} alt="logo" className="logo" />
             </div>
-            <div className="absolute bottom-[25px] -left-[3px]">
-              <img src={logoStrike} alt="logostrike" />
+            <div className="absolute md:bottom-[25px] bottom-[9px] md:-left-[3px] left-0">
+              <img src={logoStrike} alt="logostrike" className="strike" />
             </div>
           </div>
         </div>
-        <div className="w-full h-[33.33%] flex justify-center items-center  text-white font-[Montserrat] font-bold text-[72px]">
+        <div className="md:w-full md:h-[33.33%] h-auto w-full flex md:justify-center items-center text-white md:font-[Montserrat] font-[Nunito] font-bold md:text-[72px] text-[20px]">
           BASE
         </div>
-        <div className="w-full h-[33.33%] flex justify-center items-end">
+        <div className="w-full h-[33.33%] md:flex hidden justify-center items-end">
           <div className="flex w-[45%] pb-7 justify-center">
             <img src={git} alt="Git" className="mr-4 h-[44px] w-[44px]" />
             <img

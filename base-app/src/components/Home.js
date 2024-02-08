@@ -4,7 +4,7 @@ import Login from './Login'
 
 function Home() {
   return (
-    <div className='flex content-stretch h-screen w-screen'>
+    <div className='md:flex md:flex-row flex-col h-screen w-screen'>
       <BaseInfo />
       <Login />
     </div>

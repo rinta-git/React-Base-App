@@ -1,3 +1,18 @@
-.base-info-container{
-    clip-path: polygon(0 0, 100% 0, 83% 100%, 0% 100%);
+
+
+@media (min-width: 768px) {
+    .base-info-container{
+        clip-path: polygon(0 0, 100% 0, 83% 100%, 0% 100%);
+    }
+}
+
+@media (max-width: 767px) {
+    .logo{
+        width: 26px;
+        height: 26px;
+    }
+    .strike{
+        width: 26px;
+        height: 7.15px;
+    }
 }
