@@ -14,7 +14,6 @@ import { NavLink, useLocation } from "react-router-dom";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const currentPath = useLocation();
-  console.log(currentPath.pathname);
   const toggleMenu = () => {
     setNav(!nav);
   };
