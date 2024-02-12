@@ -1,95 +1,125 @@
-import React, { useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
-import MenuLogo from "../assets/MenuLogo.png";
-import Category from "../assets/Category.png";
+import React, { useEffect, useState } from "react";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import notification from "../assets/notification_sm.png";
+import profile from "../assets/profile.png";
 import UploadIcon from "../assets/Chart.png";
-import Ticket from "../assets/Ticket.png";
-import Schedule from "../assets/Schedule.png";
-import Calendar from "../assets/Calendar.png";
-import Notification from "../assets/Notification.png";
-import Setting from "../assets/Setting.png";
+import { MdDashboard } from "react-icons/md";
+import { HiMiniTicket } from "react-icons/hi2";
+import { RiFileList2Fill, RiSettings3Fill } from "react-icons/ri";
+import { SlCalender } from "react-icons/sl";
+import { IoNotifications } from "react-icons/io5";
+import MenuLogo from "../assets/MenuLogo.png";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  //const [nav, setNav] = useState(false);
-
+  const [nav, setNav] = useState(false);
+  const currentPath = useLocation();
+  console.log(currentPath.pathname);
+  const toggleMenu = () => {
+    setNav(!nav);
+  };
   const menuItems = [
     {
-      icon: <img src={Category} alt="Category" size={24} className="mr-4" />,
+      path: "/dashboard",
+      icon: <MdDashboard size={24} className="mr-4" />,
       text: "Dashboard",
     },
     {
+      path: "/upload",
       icon: (
-        <img src={UploadIcon} alt="UploadIcon" size={24} className="mr-4" />
+        <img src={UploadIcon} alt="UploadIcon" size={24} className="mr-4 " />
       ),
       text: "Upload",
     },
     {
-      icon: <img src={Ticket} alt="Ticket" size={24} className="mr-4" />,
+      path: "/invoice",
+      icon: <HiMiniTicket size={24} className="mr-4" />,
       text: "Invoice",
     },
     {
-      icon: <img src={Schedule} alt="Schedule" size={24} className="mr-4" />,
+      path: "/schedule",
+      icon: <RiFileList2Fill size={24} className="mr-4 rounded-xl" />,
       text: "Schedule",
     },
     {
-      icon: <img src={Calendar} alt="Calendar" size={24} className="mr-4" />,
+      path: "/calendar",
+      icon: <SlCalender size={24} className="mr-4 rounded-sm" />,
       text: "Calendar",
     },
     {
-      icon: (
-        <img src={Notification} alt="Notification" size={24} className="mr-4" />
-      ),
+      path: "/notification",
+      icon: <IoNotifications size={24} className="mr-4" />,
       text: "Notification",
     },
     {
-      icon: <img src={Setting} alt="Setting" size={24} className="mr-4" />,
+      path: "/settings",
+      icon: <RiSettings3Fill size={24} className="mr-4" />,
       text: "Settings",
     },
   ];
 
+  useEffect(() => {
+    window.innerWidth <= 768 ? setNav(false) : setNav(true);
+  }, []);
   return (
-    <div className="flex justify-between items-center p-4 shadow-sm">
-      {/* Left side */}
-      {/* <div className="flex items-center">
-        <div onClick={() => setNav(!nav)} className="cursor-pointer">
-          <AiOutlineMenu size={30} />
+    <div className="md:h-screen bg-white">
+      <div className="md:flex grid grid-cols-12 items-center m-4">
+        <div className="sm:col-span-10 col-span-8 flex  items-center">
+          <AiOutlineMenu
+            className="md:hidden block cursor-pointer mr-4"
+            onClick={toggleMenu}
+          />
+          <div
+            className="bg-cover bg-no-repeat md:h-[42px] md:w-[42px] h-[30px] w-[30px]"
+            style={{ backgroundImage: `url(${MenuLogo})` }}
+          ></div>
+          <h2 className="p-4">
+            <span className="font-semibold font-[Nunito] md:text-[24px] text-[20px] text-[#030229]">
+              Base
+            </span>
+          </h2>
         </div>
-      </div>     */}
-
-      {/* Mobile Menu */}
-      {/* Overlay */}
-      {/* {!nav ? (
-        <div className="bg-black/80 fixed w-full h-screen z-10 top-0 left-0"></div>
-      ) : (
-        ""
-      )} */}
-
-      {/* Side drawer menu */}
-      {/* <div
-        className={
-          !nav
-            ? "fixed top-0 left-0 w-[300px] h-screen bg-white z-10 duration-300"
-            : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"
-        }
-      > */}
-      <div className="fixed top-0 left-0 h-screen bg-white z-10 duration-300">
-        <h2 className="p-4">
-          <span className="font-semibold font-[Nunito] text-[24px] text-[#030229]">Base</span>
-        </h2>
+        <div className="sm:col-span-2 col-span-4">
+          <div className="flex justify-end md:hidden">
+            {nav ? (
+              <AiOutlineClose onClick={toggleMenu} />
+            ) : (
+              <>
+                <span className="mx-3 self-center cursor-pointer">
+                  <img src={notification} alt="notification" />
+                </span>
+                <span className="mx-3 self-center cursor-pointer">
+                  <img src={profile} alt="profile" />
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+      {nav && (
         <nav>
           <ul className="flex flex-col text-[#9A9AA9]">
-            {menuItems.map(({ icon, text }, index) => {
+            {menuItems.map(({ path, icon, text }, index) => {
               return (
-                <div key={index} className=" py-4">
-                  <li className="font-semibold font-[Nunito] text-[16px] flex cursor-pointer mx-auto p-2 pl-4 hover:text-[#605BFF] hover:bg-[rgb(172,169,255)] hover:bg-[linear-gradient(90deg,_rgba(172,169,255,1)_0%,_rgba(255,255,255,1)_14%,_rgba(255,255,255,1)_100%)]">
-                    {icon} {text}
+                <div key={index} className="py-2">
+                  <li className="font-semibold font-[Nunito] text-[16px] cursor-pointer mx-auto p-2 pl-4  hover:text-[#605BFF] hover:bg-[rgb(172,169,255)] hover:bg-[linear-gradient(90deg,_rgba(172,169,255,1)_0%,_rgba(255,255,255,1)_14%,_rgba(255,255,255,1)_100%)] ">
+                    <NavLink
+                      to={path}
+                      className={
+                        currentPath.pathname === path
+                          ? "text-[#605BFF] flex"
+                          : "flex"
+                      }
+                    >
+                      {icon} {text}
+                    </NavLink>
                   </li>
                 </div>
               );
             })}
           </ul>
         </nav>
-      </div>
+      )}
     </div>
   );
 };

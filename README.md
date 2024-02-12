@@ -16,10 +16,14 @@
 
 ### Upload page
 - [x] Set up menu template
-- [ ] finish sidebar
-- [ ] upload header
+- [x] finish sidebar
+- [x] upload header
+- [ ] file uploader
 
 - #### _Take aways_
     * Utilized react-router-dom
-    * useNavigate hook
+    * useNavigate(), useLocation(), useEffect hook
     * Utilized linear gradient
+    * Utilized grid
+    * Utilized navlink
+
